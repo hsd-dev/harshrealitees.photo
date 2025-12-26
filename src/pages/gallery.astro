@@ -1,8 +1,53 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Gallery from "../components/Gallery.astro";
+import { galleryCollections } from "../data/gallery.js";
 ---
+
 <BaseLayout title="Gallery">
-  <h1></h1>
-  <Gallery /> <!-- defaults to all images -->
+  <h1 class="text-xs uppercase tracking-[0.25em] mb-12 text-gray-400 font-light">Gallery Collections</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+    {galleryCollections.map((collection) => (
+      <a 
+        href={`/gallery/${collection.id}`}
+        class="group block relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer bg-gradient-to-br from-gray-900 to-black"
+        style="text-decoration: none; box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);"
+      >
+        <!-- Preview Image -->
+        {collection.images[0] && (
+          <div class="relative w-full h-48 overflow-hidden">
+            <img 
+              src={collection.images[0]} 
+              alt={collection.title}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-80"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+          </div>
+        )}
+        
+        <!-- Content -->
+        <div class="p-6">
+          <h2 class="text-lg font-light mb-3 text-white group-hover:text-gray-100 transition-colors tracking-wide uppercase">
+            {collection.title}
+          </h2>
+          <p class="text-gray-400 text-xs mb-4 line-clamp-2 leading-relaxed tracking-wide">
+            {collection.description}
+          </p>
+          <div class="flex items-center justify-between pt-3 border-t border-gray-800">
+            <p class="text-gray-500 text-xs font-light tracking-[0.1em] uppercase">
+              {collection.images.length} {collection.images.length === 1 ? 'photo' : 'photos'}
+            </p>
+            <span class="text-gray-600 group-hover:text-gray-400 transition-colors text-xs tracking-[0.15em] uppercase">
+              View →
+            </span>
+          </div>
+        </div>
+        
+        <!-- Hover overlay effect -->
+        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none"></div>
+      </a>
+    ))}
+  </div>
+  <h2 class="text-xs uppercase tracking-[0.25em] mb-6 text-gray-400 font-light">All Photos</h2>
+  <Gallery />
 </BaseLayout>
