@@ -45,7 +45,9 @@ div img {
 
 /* Optional: add spacing around main content */
 main {
+  margin-top: 150px; /* or however tall your nav is */
+  padding: 24px;    /* optional padding */
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px;
+  margin-left: auto;
+  margin-right: auto;
 }

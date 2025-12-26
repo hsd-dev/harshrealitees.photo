@@ -1,0 +1,43 @@
+---
+import { Carousel } from 'astro-bootstrap';
+import type { CarouselSlideType } from 'astro-bootstrap';
+import { galleryImages } from '../data/gallery.js';
+
+const id = 'carouselExampleBasic';
+
+// Map galleryImages to CarouselSlideType
+const slides: CarouselSlideType[] = galleryImages.map((img, index) => ({
+  img,
+  alt: `Gallery image ${index + 1}`,
+  active: index === 0,
+}));
+---
+
+<section style="max-width:600px; margin:24px auto;">
+  <Carousel {id} fade interval={3000}>
+    <Carousel.Indicators {id} {slides} />
+    <Carousel.Inner>
+      {slides.map((slide) => (
+        <Carousel.Item active={slide.active}>
+          <div style="position:relative; width:100%; padding-top:100%;"> 
+            <!-- This creates a square container -->
+            <img
+              src={slide.img}
+              alt={slide.alt}
+              style="
+                position:absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                border-radius:8px;
+              "
+            />
+          </div>
+        </Carousel.Item>
+      ))}
+    </Carousel.Inner>
+    <Carousel.Controls id={id} />
+  </Carousel>
+</section>
