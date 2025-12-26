@@ -1,12 +1,15 @@
 ---
-const { images = [] } = Astro.props;
+import { galleryImages } from "../data/gallery.js";
 
-// Compute grid size (n x n)
-const n = Math.ceil(Math.sqrt(images.length));
+// Use passed images or default
+const { images = galleryImages, columns } = Astro.props;
+
+// Compute grid size if columns not explicitly set
+const n = columns || Math.ceil(Math.sqrt(images.length));
 ---
-<div style={`display: grid; grid-template-columns: repeat(${n}, 1fr); gap: 16px;`}>
+<div style={`display:grid; grid-template-columns:repeat(${n}, 1fr); gap:16px;`}>
   {images.map(img => (
-    <div style="width:100%; aspect-ratio:1 / 1; overflow:hidden; border-radius:8px;">
+    <div style="width:100%; aspect-ratio:1/1; overflow:hidden; border-radius:8px;">
       <img src={img} alt="" style="width:100%; height:100%; object-fit:cover;" />
     </div>
   ))}

@@ -1,7 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Gallery from "../components/Gallery.astro";
+import { galleryImages } from "../data/gallery.js"; // reuse the array
 ---
 <BaseLayout title="Home">
-  <h1>Photography</h1>
-  <p>This site will grow slowly.</p>
+  <h1>Welcome to My Photography</h1>
+  
+  <nav style="display:flex; flex-wrap:wrap; gap:16px; margin-top:32px;">
+    <a href="/gallery" style="padding:12px 24px; background:#333; color:#fff; border-radius:6px; text-decoration:none;">Gallery</a>
+    <a href="/shop" style="padding:12px 24px; background:#333; color:#fff; border-radius:6px; text-decoration:none;">Shop</a>
+    <a href="/essays" style="padding:12px 24px; background:#333; color:#fff; border-radius:6px; text-decoration:none;">Stories in Pictures</a>
+    <a href="/contact" style="padding:12px 24px; background:#333; color:#fff; border-radius:6px; text-decoration:none;">Contact</a>
+  </nav>
+
+  <h2 style="margin-top:32px;">Featured</h2>
+  <Gallery images={galleryImages.slice(0,4)} columns={4} />
+
+  <p style="margin-top:32px; font-style:italic; color:#666;">
+    Most sections are WIP. Check back for updates.
+  </p>
 </BaseLayout>
