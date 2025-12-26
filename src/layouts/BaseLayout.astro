@@ -1,0 +1,17 @@
+---
+const { title = "My Photography" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{title}</title>
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="/src/styles/global.css" />
+</head>
+<body>
+  <main>
+    <slot />
+  </main>
+</body>
+</html>
