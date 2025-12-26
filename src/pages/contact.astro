@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Contact">
+  <h1>Contact</h1>
+  <p>I'd love to hear from you. Reach out via email or follow me on social media.</p>
+
+  <!-- Contact form (placeholder) -->
+  <form style="display:flex; flex-direction:column; gap:16px; margin-top:24px; max-width:500px;">
+    <input type="text" name="name" placeholder="Your Name" required
+      style="padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;" />
+    <input type="email" name="email" placeholder="Your Email" required
+      style="padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;" />
+    <textarea name="message" placeholder="Your Message" rows="6" required
+      style="padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;"></textarea>
+    <button type="submit"
+      style="padding:12px 24px; border:none; border-radius:6px; background:#000; color:#fff; cursor:pointer; transition:background 0.2s;">
+      Send Message
+    </button>
+  </form>
+
+  <!-- Optional: social links -->
+  <div style="margin-top:32px;">
+    <h2>Find me online</h2>
+    <ul style="list-style:none; padding:0; display:flex; gap:16px;">
+      <li><a href="https://instagram.com/yourusername" target="_blank">Instagram</a></li>
+      <li><a href="https://twitter.com/yourusername" target="_blank">Twitter</a></li>
+      <li><a href="mailto:youremail@example.com">Email</a></li>
+    </ul>
+  </div>
+</BaseLayout>
