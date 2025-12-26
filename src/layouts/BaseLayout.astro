@@ -1,4 +1,5 @@
 ---
+import "../styles/global.css"; // ← import here
 const { title = "My Photography" } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -7,7 +8,6 @@ const { title = "My Photography" } = Astro.props;
   <meta charset="utf-8" />
   <title>{title}</title>
   <meta name="viewport" content="width=device-width" />
-  <link rel="stylesheet" href="/public/styles/global.css" />
 </head>
 <body>
   <main>
