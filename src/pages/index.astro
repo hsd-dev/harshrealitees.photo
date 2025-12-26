@@ -5,23 +5,8 @@ import HeroCarousel from '../components/HeroCarousel.astro';
 
 import { galleryImages } from "../data/gallery.js"; // reuse the array
 ---
-<BaseLayout title="harshrealitees">
-  <h1>Harsh Realitees Photography</h1>
-  
-  <nav style="display:flex; flex-wrap:wrap; gap:16px; margin-top:32px;">
-    <a href="/gallery" style="padding:12px 24px; background:#333; color:#fff; border-radius:6px; text-decoration:none;">Gallery</a>
-    <a href="/shop" style="padding:12px 24px; background:#333; color:#fff; border-radius:6px; text-decoration:none;">Shop</a>
-    <a href="/essays" style="padding:12px 24px; background:#333; color:#fff; border-radius:6px; text-decoration:none;">Stories in Pictures</a>
-    <a href="/contact" style="padding:12px 24px; background:#333; color:#fff; border-radius:6px; text-decoration:none;">Contact</a>
-  </nav>
-
-  <section style="margin-top:48px;">
-    <h2>Welcome to my photography portfolio</h2>
-    <p>Scroll down to see galleries, essays, and prints.</p>
-  </section>
-
+<BaseLayout title="Harsh Realitees Photography">
   <HeroCarousel />
-
   <p style="margin-top:32px; font-style:italic; color:#666;">
     Most sections are WIP. Check back for updates.
   </p>
