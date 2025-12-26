@@ -9,5 +9,6 @@ export const galleryImages = [
   "https://64.media.tumblr.com/8584fee992a5b57ee9120a34572bc1c6/567c37d23c29cb6c-6d/s500x750/4d9f57dcc3de86b4e79a4eefb739bdcb74d48484.jpg",
   "https://64.media.tumblr.com/7a37992e9daff951701c45843c1343ff/567c37d23c29cb6c-79/s500x750/6e437ec137fd9fee9753eff3876192fd67aa8f0d.jpg",
   "https://64.media.tumblr.com/f357c63befacba72e62f925164e05b4a/567c37d23c29cb6c-42/s500x750/241c3cd6e93705b831508c53cc8413373d0924df.jpg",
-  "https://64.media.tumblr.com/c226f10ed9a7cb497945eece6a75a6d1/567c37d23c29cb6c-2e/s500x750/d99c6d7580cb6d5801eb455f7f3b4eb4f688b8c6.jpg"
+  "https://64.media.tumblr.com/c226f10ed9a7cb497945eece6a75a6d1/567c37d23c29cb6c-2e/s500x750/d99c6d7580cb6d5801eb455f7f3b4eb4f688b8c6.jpg",
+  "https://64.media.tumblr.com/13d115340d585e45672ecbb2c7b355d5/567c37d23c29cb6c-4b/s500x750/9a2c310663b297304ed466b1d7497e20e38e4479.jpg"
 ];
