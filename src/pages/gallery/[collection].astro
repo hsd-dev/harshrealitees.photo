@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Gallery from "../../components/Gallery.astro";
+import { galleryCollections } from "../../data/gallery.js";
+
+// Export getStaticPaths to tell Astro which collection pages to generate
+export async function getStaticPaths() {
+  return galleryCollections.map((collection) => ({
+    params: { collection: collection.id },
+  }));
+}
+
+const { collection } = Astro.params;
+const collectionData = galleryCollections.find(c => c.id === collection);
+---
+
+<BaseLayout title={collectionData ? collectionData.title : "Gallery"}>
+  {collectionData ? (
+    <>
+      <div class="mb-8">
+        <h1 class="text-3xl mb-2">{collectionData.title}</h1>
+        <p class="text-gray-400">{collectionData.description}</p>
+        <a href="/gallery" class="text-gray-400 hover:text-white mt-4 inline-block">
+          ← Back to all collections
+        </a>
+      </div>
+      <Gallery collectionId={collection} />
+    </>
+  ) : (
+    <>
+      <p class="text-gray-400 mb-4">Collection not found: {collection}</p>
+      <a href="/gallery" class="text-gray-400 hover:text-white">← Back to all collections</a>
+    </>
+  )}
+</BaseLayout>

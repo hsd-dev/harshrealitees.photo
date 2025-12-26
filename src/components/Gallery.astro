@@ -1,13 +1,28 @@
 ---
-import { galleryImages } from "../data/gallery.js";
 import { Carousel } from 'astro-bootstrap';
 import type { CarouselSlideType } from 'astro-bootstrap';
+import { galleryCollections } from "../data/gallery.js";
 
-// Use passed images or default
-const { images = galleryImages, columns } = Astro.props;
+// Use passed collection or show all collections
+const { collectionId } = Astro.props;
 
-// Compute grid size if columns not explicitly set
-const n = columns || Math.ceil(Math.sqrt(images.length));
+let images = [];
+let lightboxCarouselId = 'lightboxCarousel';
+
+if (collectionId) {
+  // Show specific collection
+  const collection = galleryCollections.find(c => c.id === collectionId);
+  if (collection) {
+    images = collection.images;
+    lightboxCarouselId = `lightboxCarousel-${collectionId}`;
+  }
+} else {
+  // Show all images from all collections
+  images = galleryCollections.flatMap(c => c.images);
+}
+
+// Compute grid size
+const n = Math.ceil(Math.sqrt(images.length));
 
 // Map images to CarouselSlideType for the lightbox carousel
 const carouselSlides: CarouselSlideType[] = images.map((img, index) => ({
@@ -15,8 +30,6 @@ const carouselSlides: CarouselSlideType[] = images.map((img, index) => ({
   alt: `Gallery image ${index + 1}`,
   active: index === 0,
 }));
-
-const lightboxCarouselId = 'lightboxCarousel';
 ---
 
 <div style={`display:grid; grid-template-columns:repeat(${n}, 1fr); gap:16px;`}>
