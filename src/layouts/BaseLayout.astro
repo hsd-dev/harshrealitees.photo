@@ -15,8 +15,7 @@ const { title = "My Photography" } = Astro.props;
     />
   </head>
 
-  <body class="bg-black text-white overflow-hidden">
-
+  <body class="bg-black text-white">
     <!-- HEADER -->
     <header class="fixed top-0 left-0 w-full z-50">
       <div class="px-8 py-6 flex justify-between items-center">
@@ -40,7 +39,7 @@ const { title = "My Photography" } = Astro.props;
     </header>
 
     <!-- MAIN -->
-    <main class="pt-24">
+    <main class="pt-24"> <!-- padding top to offset fixed header -->
       <slot />
     </main>
 

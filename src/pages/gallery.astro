@@ -10,12 +10,12 @@ import { galleryCollections } from "../data/gallery.js";
     {galleryCollections.map((collection) => (
       <a 
         href={`/gallery/${collection.id}`}
-        class="group block relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer bg-gradient-to-br from-gray-900 to-black"
+        class="group block relative rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer bg-gradient-to-br from-gray-900 to-black"
         style="text-decoration: none; box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);"
       >
         <!-- Preview Image -->
         {collection.images[0] && (
-          <div class="relative w-full h-48 overflow-hidden">
+          <div class="relative w-full h-48">
             <img 
               src={collection.images[0]} 
               alt={collection.title}
@@ -48,6 +48,6 @@ import { galleryCollections } from "../data/gallery.js";
       </a>
     ))}
   </div>
-  <h2 class="text-xs uppercase tracking-[0.25em] mb-6 text-gray-400 font-light">All Photos</h2>
-  <Gallery />
+  <!--h2 class="text-xs uppercase tracking-[0.25em] mb-6 text-gray-400 font-light">All Photos</h2>
+  <Gallery /-->
 </BaseLayout>
