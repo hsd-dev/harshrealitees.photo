@@ -15,11 +15,11 @@ const essays = await getCollection("essays");
           style="text-decoration: none; box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);"
         >
           <!-- Preview Image -->
-          {essay.data.cover && (
+          {essay.data.hero.image && (
             <div class="relative w-full h-48">
               <img 
-                src={essay.data.cover} 
-                alt={essay.data.title}
+                src={essay.data.hero.image} 
+                alt={essay.data.hero.title}
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-80"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
@@ -28,10 +28,10 @@ const essays = await getCollection("essays");
           <!-- Content -->
           <div class="p-6">
             <h2 class="text-lg font-light mb-3 text-white group-hover:text-gray-100 transition-colors tracking-wide uppercase">
-              {essay.data.title}
+              {essay.data.hero.title}
             </h2>
             <p class="text-gray-400 text-xs mb-4 line-clamp-2 leading-relaxed tracking-wide">
-              {essay.data.description}
+              {essay.data.hero.description}
             </p>
             <div class="flex items-center justify-between pt-3 border-t border-gray-800">
               <span class="text-gray-600 group-hover:text-gray-400 transition-colors text-xs tracking-[0.15em] uppercase">
