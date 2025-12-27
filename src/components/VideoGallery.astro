@@ -1,0 +1,75 @@
+---
+const { videos } = Astro.props;
+---
+
+<!-- Thumbnails grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {videos.map((video) => (
+    <button
+      class="group relative overflow-hidden rounded-lg cursor-pointer"
+      onClick={`openVideo('${video.url}')`}
+    >
+      <img
+        src={video.thumbnail}
+        class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+      />
+      <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
+        <span class="text-white text-4xl">▶</span>
+      </div>
+    </button>
+  ))}
+</div>
+
+<!-- Modal overlay -->
+<div
+  id="video-overlay"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80"
+>
+  <!-- Close -->
+  <button
+    class="absolute top-6 right-6 text-white text-3xl opacity-70 hover:opacity-100"
+    onClick="closeVideo()"
+  >
+    ✕
+  </button>
+
+  <!-- Video wrapper (perfectly centered square-ish) -->
+  <div class="w-[90vw] max-w-5xl aspect-video bg-black">
+    <iframe
+      id="video-frame"
+      class="w-full h-full"
+      src=""
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+
+<script is:inline>
+  window.openVideo = function (url) {
+    const overlay = document.getElementById('video-overlay');
+    const frame = document.getElementById('video-frame');
+
+    frame.src = url + '?autoplay=1';
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeVideo = function () {
+    const overlay = document.getElementById('video-overlay');
+    const frame = document.getElementById('video-frame');
+
+    frame.src = '';
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') window.closeVideo();
+  });
+</script>
+
