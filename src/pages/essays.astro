@@ -33,6 +33,11 @@ const essays = await getCollection("essays");
             <p class="text-gray-400 text-xs mb-4 line-clamp-2 leading-relaxed tracking-wide">
               {essay.data.description}
             </p>
+            <div class="flex items-center justify-between pt-3 border-t border-gray-800">
+              <span class="text-gray-600 group-hover:text-gray-400 transition-colors text-xs tracking-[0.15em] uppercase">
+                View →
+              </span>
+            </div>
           </div>
         </a>
       ))}
