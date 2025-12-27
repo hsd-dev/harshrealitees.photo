@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const essays = await getCollection("essays");
+---
+
+<BaseLayout title="Essays">
+  <h1 class="text-xs uppercase tracking-[0.25em] mb-12 text-gray-400 font-light">Essay Collections</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+    {essays.map((essay) => (
+        <a href={`/essays/${essay.id}`}
+          class="group block relative rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer bg-gradient-to-br from-gray-900 to-black"
+          style="text-decoration: none; box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);"
+        >
+          <!-- Preview Image -->
+          {essay.data.cover && (
+            <div class="relative w-full h-48">
+              <img 
+                src={essay.data.cover} 
+                alt={essay.data.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-80"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            </div>
+          )}
+          <!-- Content -->
+          <div class="p-6">
+            <h2 class="text-lg font-light mb-3 text-white group-hover:text-gray-100 transition-colors tracking-wide uppercase">
+              {essay.data.title}
+            </h2>
+            <p class="text-gray-400 text-xs mb-4 line-clamp-2 leading-relaxed tracking-wide">
+              {essay.data.description}
+            </p>
+            <div class="flex items-center justify-between pt-3 border-t border-gray-800">
+              <span class="text-gray-600 group-hover:text-gray-400 transition-colors text-xs tracking-[0.15em] uppercase">
+                View →
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+  </div>
+</BaseLayout>
