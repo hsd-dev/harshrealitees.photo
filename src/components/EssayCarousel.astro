@@ -48,6 +48,7 @@ const allSlides = [
             <!-- Content -->
             <div 
               class="slide-overlay"
+              id="essay-content"
               style="position: relative; z-index: 10; max-width: 90%; max-height: 90vh; width: 100%; color: white; display: flex; align-items: center; gap: 4rem; padding: 2rem; padding-left: 5rem;"
             >
               {slide.isHero ? (
@@ -103,13 +104,24 @@ const allSlides = [
 <script define:vars={{ carouselId }}>
   // Make slides clickable to advance
   const carouselElement = document.getElementById(carouselId);
+  const essayContent = document.getElementById('essay-content');
+  const backButton = document.querySelector('a[href="/essays"]');
   
   if (carouselElement) {
-    // Click anywhere on the slide to advance (except carousel controls)
+    // Click anywhere on the slide to advance (except carousel controls and back button)
     carouselElement.addEventListener('click', (e) => {
-      // Don't advance if clicking on carousel navigation controls
+      // Don't advance if clicking on carousel navigation controls or back button
       if (e.target.closest('.carousel-control-prev') || 
-          e.target.closest('.carousel-control-next')) {
+          e.target.closest('.carousel-control-next') ||
+          e.target.closest('a[href="/essays"]')) {
+        return;
+      }
+      
+      // If clicking outside the content area, navigate back
+      if (essayContent && !essayContent.contains(e.target)) {
+        if (backButton) {
+          backButton.click();
+        }
         return;
       }
       
@@ -132,6 +144,11 @@ const allSlides = [
         if (carousel) {
           e.preventDefault();
           carousel.prev();
+        }
+      } else if (e.key === 'Escape') {
+        // Exit on Escape key
+        if (backButton) {
+          backButton.click();
         }
       }
     });

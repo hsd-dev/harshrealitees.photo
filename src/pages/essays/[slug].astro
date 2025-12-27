@@ -19,6 +19,14 @@ const { essay } = Astro.props;
 
 <BaseLayout title={essay.data.title}>
   <div style="position: relative; width: 100%; height: 100vh; overflow: hidden; margin-top: -6rem;">
+    <!-- Back button -->
+    <a 
+      href="/essays"
+      class="absolute top-6 left-6 z-50 text-white text-2xl hover:opacity-70 transition-opacity"
+      style="z-index: 50;"
+    >
+      ← Back
+    </a>
     <EssayCarousel hero={essay.data.hero} slides={essay.data.slides} />
   </div>
 </BaseLayout>
