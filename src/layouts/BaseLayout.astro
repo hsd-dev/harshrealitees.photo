@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-const { title = "My Photography" } = Astro.props;
+const { title = "My Photography", class: className = "" } = Astro.props;
 const isHomePage = Astro.url.pathname === "/";
 const pageTitle = isHomePage ? "Harsh Realitees Photography" : `${title} | Harsh Realitees`;
 ---
@@ -17,7 +17,7 @@ const pageTitle = isHomePage ? "Harsh Realitees Photography" : `${title} | Harsh
     />
   </head>
 
-  <body class="bg-black text-white">
+  <body class={`bg-black text-white ${isHomePage ? 'relative h-screen overflow-hidden' : 'min-h-screen flex flex-col'}`}>
     <!-- HEADER -->
     <header class="fixed top-0 left-0 w-full z-50">
       <div class="px-8 py-6 flex justify-between items-center">
@@ -42,12 +42,12 @@ const pageTitle = isHomePage ? "Harsh Realitees Photography" : `${title} | Harsh
     </header>
 
     <!-- MAIN -->
-    <main class="pt-24"> <!-- padding top to offset fixed header -->
+    <main class={`pt-24 ${isHomePage ? className : 'flex-grow'}`}> <!-- padding top to offset fixed header -->
       <slot />
     </main>
 
     <!-- FOOTER -->
-    <footer class="text-center py-8 text-gray-500 text-sm">
+    <footer class={`text-center py-8 text-gray-500 text-sm ${isHomePage ? 'fixed bottom-0 left-0 right-0 z-40' : 'mt-auto'}`}>
       © 2025 Harsh Deshpande. All rights reserved
     </footer>
 
