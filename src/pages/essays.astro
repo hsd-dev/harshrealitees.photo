@@ -7,8 +7,10 @@ const essays = await getCollection("essays");
 ---
 
 <BaseLayout title="Essays">
-  <h1 class="text-xs uppercase tracking-[0.25em] mb-12 text-gray-400 font-light">Essay Collections</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+  <div class="min-h-[calc(100vh-12rem)] flex flex-col">
+    <h1 class="text-xs uppercase tracking-[0.25em] mb-12 text-gray-400 font-light">Essay Collections</h1>
+    <div class="flex-1 flex items-center justify-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 w-full">
     {essays.map((essay) => (
         <a href={`/essays/${essay.id}`}
           class="group block relative rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer bg-gradient-to-br from-gray-900 to-black"
@@ -34,12 +36,20 @@ const essays = await getCollection("essays");
               {essay.data.hero.description}
             </p>
             <div class="flex items-center justify-between pt-3 border-t border-gray-800">
+              <p class="text-gray-500 text-xs font-light tracking-[0.1em] uppercase">
+                Essay
+              </p>
               <span class="text-gray-600 group-hover:text-gray-400 transition-colors text-xs tracking-[0.15em] uppercase">
                 View →
               </span>
             </div>
           </div>
+          
+          <!-- Hover overlay effect -->
+          <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none"></div>
         </a>
       ))}
+      </div>
+    </div>
   </div>
 </BaseLayout>

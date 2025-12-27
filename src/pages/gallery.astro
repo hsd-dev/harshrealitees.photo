@@ -5,8 +5,10 @@ import { galleryCollections } from "../data/gallery.js";
 ---
 
 <BaseLayout title="Gallery">
-  <h1 class="text-xs uppercase tracking-[0.25em] mb-12 text-gray-400 font-light">Gallery Collections</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+  <div class="min-h-[calc(100vh-12rem)] flex flex-col">
+    <h1 class="text-xs uppercase tracking-[0.25em] mb-12 text-gray-400 font-light">Gallery Collections</h1>
+    <div class="flex-1 flex items-center justify-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 w-full">
     {galleryCollections.map((collection) => (
       <a 
         href={`/gallery/${collection.id}`}
@@ -47,7 +49,9 @@ import { galleryCollections } from "../data/gallery.js";
         <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none"></div>
       </a>
     ))}
+      </div>
+    </div>
+    <!--h2 class="text-xs uppercase tracking-[0.25em] mb-6 text-gray-400 font-light">All Photos</h2>
+    <Gallery /-->
   </div>
-  <!--h2 class="text-xs uppercase tracking-[0.25em] mb-6 text-gray-400 font-light">All Photos</h2>
-  <Gallery /-->
 </BaseLayout>

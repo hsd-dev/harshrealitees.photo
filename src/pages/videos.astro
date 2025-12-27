@@ -5,13 +5,18 @@ import { videoCollections } from "../data/videos.js";
 ---
 
 <BaseLayout title="Videos">
-  <h1 class="text-xs uppercase tracking-[0.25em] mb-12 text-gray-400 font-light">Video Collections</h1>
-
-  {videoCollections.map((collection) => (
-    <section class="mb-12">
-      <h2 class="text-lg font-light mb-4 text-white">{collection.title}</h2>
-      <p class="text-gray-500 mb-6">{collection.description}</p>
-      <VideoGallery videos={collection.videos} />
-    </section>
-  ))}
+  <div class="min-h-[calc(100vh-12rem)] flex flex-col">
+    <h1 class="text-xs uppercase tracking-[0.25em] mb-12 text-gray-400 font-light">Video Collections</h1>
+    <div class="flex-1 flex items-center">
+      <div class="w-full">
+        {videoCollections.map((collection) => (
+        <div class="mb-12">
+          <h2 class="text-lg font-light mb-4 text-white">{collection.title}</h2>
+          <p class="text-gray-500 mb-6">{collection.description}</p>
+          <VideoGallery videos={collection.videos} />
+        </div>
+        ))}
+      </div>
+    </div>
+  </div>
 </BaseLayout>
