@@ -21,20 +21,12 @@ const slides: CarouselSlideType[] = (carouselImages || []).map((img, index) => (
       <Carousel.Inner>
         {slides.map((slide) => (
           <Carousel.Item active={slide.active}>
-            <div style="position:relative; width:100%; padding-top:100%;"> 
+            <div class="relative w-full pt-[100%]"> 
               <!-- This creates a square container -->
               <img
                 src={slide.img}
                 alt={slide.alt}
-                style="
-                  position:absolute;
-                  top:0;
-                  left:0;
-                  width:100%;
-                  height:100%;
-                  object-fit:cover;
-                  border-radius:8px;
-                "
+                class="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               />
             </div>
           </Carousel.Item>

@@ -6,23 +6,40 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <p>I'd love to hear from you. Reach out via email or follow me on social media.</p>
 
   <!-- Contact form (placeholder) -->
-  <form style="display:flex; flex-direction:column; gap:16px; margin-top:24px; max-width:500px;">
-    <input type="text" name="name" placeholder="Your Name" required
-      style="padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;" />
-    <input type="email" name="email" placeholder="Your Email" required
-      style="padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;" />
-    <textarea name="message" placeholder="Your Message" rows="6" required
-      style="padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;"></textarea>
-    <button type="submit"
-      style="padding:12px 24px; border:none; border-radius:6px; background:#000; color:#fff; cursor:pointer; transition:background 0.2s;">
+  <form class="flex flex-col gap-4 mt-6 max-w-md">
+    <input 
+      type="text" 
+      name="name" 
+      placeholder="Your Name" 
+      required
+      class="p-3 rounded-md border border-gray-700 bg-gray-900 text-white focus:outline-none focus:border-gray-500"
+    />
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Your Email" 
+      required
+      class="p-3 rounded-md border border-gray-700 bg-gray-900 text-white focus:outline-none focus:border-gray-500"
+    />
+    <textarea 
+      name="message" 
+      placeholder="Your Message" 
+      rows="6" 
+      required
+      class="p-3 rounded-md border border-gray-700 bg-gray-900 text-white focus:outline-none focus:border-gray-500 resize-none"
+    ></textarea>
+    <button 
+      type="submit"
+      class="p-3 px-6 rounded-md border-none bg-black text-white cursor-pointer transition-colors hover:bg-gray-900"
+    >
       Send Message
     </button>
   </form>
 
   <!-- Optional: social links -->
-  <div style="margin-top:32px;">
+  <div class="mt-8">
     <h2>Find me online</h2>
-    <ul style="list-style:none; padding:0; display:flex; gap:16px;">
+    <ul class="list-none p-0 flex gap-4">
       <li><a href="https://instagram.com/yourusername" target="_blank">Instagram</a></li>
       <li><a href="https://twitter.com/yourusername" target="_blank">Twitter</a></li>
       <li><a href="mailto:youremail@example.com">Email</a></li>
