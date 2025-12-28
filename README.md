@@ -9,17 +9,27 @@ Built with **Astro** (static site generator) and deployed on **Netlify**. Astro 
 **E-commerce** is powered by **Snipcart**, a headless shopping cart solution that works with static sites. Snipcart handles cart management, checkout, and payment processing without requiring a backend. The cart opens as a side panel overlay without navigating away from the page.
 
 ## Setup
-
-- git clone git@github.com:hsd-dev/harshrealitees.photo.git
-- cd <path/to/harshrealitees.photo>
-- `npm install` - Install all dependencies
+```
+git clone git@github.com:hsd-dev/harshrealitees.photo.git
+cd <path/to/harshrealitees.photo>
+npm install   # Install all dependencies
+```
 
 ## Usage
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production (outputs to `dist/`)
-- `netlify deploy --dir=dist` - Deploy preview to Netlify
-- `netlify deploy --dir=dist --prod` - Deploy to production
+### Development
+```
+npm run dev  # Start development server
+```
+The website wiil be available at [http://localhost:4321/](http://localhost:4321/)
+
+
+### Deploying to Netlify
+```
+npm run build  # Build for production (outputs to `dist/`)
+netlify deploy --dir=dist  # Deploy preview to Netlify
+netlify deploy --dir=dist --prod  # Deploy to production
+```
 
 ## Gallery Images
 
