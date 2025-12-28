@@ -36,14 +36,14 @@ const allSlides = [
 ];
 ---
 
-<div class="essay-slideshow-container">
+<div class="essay-slideshow-container" style="pointer-events: none;">
   <Carousel id={carouselId} fade interval={0} wrap={true}>
     <Carousel.Inner>
       {allSlides.map((slide, index) => (
         <Carousel.Item active={index === 0}>
           <div class="slide-content">
             <!-- Content -->
-            <div class="slide-overlay" id="essay-content">
+            <div class="slide-overlay" id="essay-content" style="pointer-events: auto;">
               {slide.isHero ? (
                 <div class="hero-slide-content">
                   <div>
@@ -88,43 +88,28 @@ const allSlides = [
         </Carousel.Item>
       ))}
     </Carousel.Inner>
-    <Carousel.Controls id={carouselId} />
+    <Carousel.Controls id={carouselId} style="pointer-events: auto;" />
   </Carousel>
 </div>
 
 <script define:vars={{ carouselId }}>
-  // Make slides clickable to advance
+  // Prevent body scrolling when essay is open
+  document.body.style.overflow = 'hidden';
+  
   const carouselElement = document.getElementById(carouselId);
-  const essayContent = document.getElementById('essay-content');
-  const backButton = document.querySelector('a[href="/essays"]');
+  const backButton = document.getElementById('essay-back-button');
+  
+  // Close function
+  function closeEssay() {
+    if (backButton) {
+      window.location.href = '/essays';
+    }
+  }
   
   if (carouselElement) {
-    // Click anywhere on the slide to advance (except carousel controls and back button)
-    carouselElement.addEventListener('click', (e) => {
-      // Don't advance if clicking on carousel navigation controls or back button
-      if (e.target.closest('.carousel-control-prev') || 
-          e.target.closest('.carousel-control-next') ||
-          e.target.closest('a[href="/essays"]')) {
-        return;
-      }
-      
-      // If clicking outside the content area, navigate back
-      if (essayContent && !essayContent.contains(e.target)) {
-        if (backButton) {
-          backButton.click();
-        }
-        return;
-      }
-      
-      const carousel = bootstrap.Carousel.getInstance(carouselElement);
-      if (carousel) {
-        carousel.next();
-      }
-    });
-    
-    // Also support keyboard navigation
+    // Keyboard navigation - only arrow keys and escape
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === ' ') {
+      if (e.key === 'ArrowRight') {
         const carousel = bootstrap.Carousel.getInstance(carouselElement);
         if (carousel) {
           e.preventDefault();
@@ -138,10 +123,13 @@ const allSlides = [
         }
       } else if (e.key === 'Escape') {
         // Exit on Escape key
-        if (backButton) {
-          backButton.click();
-        }
+        closeEssay();
       }
     });
   }
+  
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    document.body.style.overflow = '';
+  });
 </script>
