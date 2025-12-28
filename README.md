@@ -10,6 +10,8 @@ Built with **Astro** (static site generator) and deployed on **Netlify**. Astro 
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production (outputs to `dist/`)
+- `netlify deploy --dir=dist` - Deploy preview to Netlify
+- `netlify deploy --dir=dist --prod` - Deploy to production
 
 ## Gallery Images
 
