@@ -27,14 +27,14 @@ const { videos } = Astro.props;
 >
   <!-- Close -->
   <button
-    class="absolute top-6 right-6 text-white text-3xl opacity-70 hover:opacity-100"
+    class="absolute top-6 right-6 text-white text-3xl opacity-70 hover:opacity-100 z-10"
     onClick="closeVideo()"
   >
     ✕
   </button>
 
   <!-- Video wrapper (perfectly centered square-ish) -->
-  <div class="w-[90vw] max-w-5xl aspect-video bg-black">
+  <div id="video-content" class="w-[90vw] max-w-5xl aspect-video bg-black">
     <iframe
       id="video-frame"
       class="w-full h-full"
@@ -71,5 +71,17 @@ const { videos } = Astro.props;
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') window.closeVideo();
   });
+
+  // Close when clicking outside the video
+  const overlay = document.getElementById('video-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      const content = document.getElementById('video-content');
+      const closeBtn = e.target.closest('button');
+      if (content && !content.contains(e.target) && !closeBtn) {
+        window.closeVideo();
+      }
+    });
+  }
 </script>
 

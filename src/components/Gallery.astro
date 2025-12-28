@@ -58,7 +58,7 @@ const carouselSlides: CarouselSlideType[] = images.map((img, index) => ({
     ×
   </button>
   
-  <section class="max-w-6xl mx-auto px-4 w-full">
+  <section class="max-w-6xl mx-auto px-4 w-full" id="lightbox-content">
     <Carousel id={lightboxCarouselId} fade interval={0}>
       <Carousel.Inner>
         {carouselSlides.map((slide) => (
@@ -107,6 +107,14 @@ const carouselSlides: CarouselSlideType[] = images.map((img, index) => ({
   
   // Close button
   closeBtn.addEventListener('click', closeLightbox);
+  
+  // Close when clicking outside the image/content
+  lightbox.addEventListener('click', (e) => {
+    const content = document.getElementById('lightbox-content');
+    if (content && !content.contains(e.target) && e.target !== closeBtn) {
+      closeLightbox();
+    }
+  });
   
   // Close on Escape key
   document.addEventListener('keydown', (e) => {

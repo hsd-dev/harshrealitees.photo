@@ -1,8 +1,10 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection, render } from 'astro:content';
+// src/pages/essays/[slug].astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EssayCarousel from '../../components/EssayCarousel.astro';
 
-// File: src/pages/essays/[slug].astro
+// Required for dynamic routing
 export async function getStaticPaths() {
   const essays = await getCollection('essays');
   return essays.map(essay => ({
@@ -11,14 +13,20 @@ export async function getStaticPaths() {
   }));
 }
 
+// For individual essay rendering
 const { essay } = Astro.props;
-const { Content } = await render(essay);
 ---
 
 <BaseLayout title={essay.data.title}>
-  <article class="prose prose-invert mx-auto max-w-3xl px-6">
-    <h1>{essay.data.title}</h1>
-    <p class="text-sm text-gray-400">{essay.data.date.toDateString()}</p>
-    <Content />
-  </article>
+  <div style="position: relative; width: 100%; height: 100vh; overflow: hidden; margin-top: -6rem;">
+    <!-- Back button -->
+    <a 
+      href="/essays"
+      class="absolute top-6 left-6 z-50 text-white text-2xl hover:opacity-70 transition-opacity"
+      style="z-index: 50;"
+    >
+      ← Back
+    </a>
+    <EssayCarousel hero={essay.data.hero} slides={essay.data.slides} />
+  </div>
 </BaseLayout>
