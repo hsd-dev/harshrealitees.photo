@@ -170,3 +170,34 @@ main {
   overflow-y: auto;
   max-height: 100%;
 }
+
+/* Snipcart Styles */
+/* Ensure Snipcart cart appears above header */
+.snipcart,
+.snipcart * {
+  z-index: 9999 !important;
+}
+.snipcart-modal__container,
+.snipcart-sidecart,
+.snipcart-sidecart__container {
+  z-index: 10000 !important;
+}
+.snipcart-cart-header,
+.snipcart-cart__header {
+  z-index: 10001 !important;
+}
+.snipcart-cart__footer,
+.snipcart-cart__footer *,
+.snipcart-cart__actions,
+.snipcart-cart__actions * {
+  z-index: 10002 !important;
+  position: relative !important;
+}
+/* Ensure header doesn't interfere with cart */
+header {
+  z-index: 50 !important;
+}
+/* Ensure all Snipcart overlay elements are above header */
+.snipcart-overlay {
+  z-index: 9998 !important;
+}
